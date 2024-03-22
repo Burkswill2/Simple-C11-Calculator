@@ -157,15 +157,48 @@ void input(float dataSet[], int dataSetSize)
         printf("Enter a value: ");
         scanf("%f", &dataSet[i]);
     }
-
     menu(dataSet, dataSetSize);
+}
+
+/*
+ * Dynamically allocates memory for the data set array.
+ * Parameters: **dataSetPtr (float), dataSetSize (int)
+ */
+void setDataSetPtr(float **dataSetPtr, int dataSetSize)
+{
+    *dataSetPtr = (float*)calloc(dataSetSize, sizeof(float));
+
+   if (*dataSetPtr == NULL) {
+       fprintf(stderr, "Memory allocation error \n");
+       exit(EXIT_FAILURE);
+   }
+}
+
+/*
+ * Prompts and validates the dataset size input from the user.
+ * Parameter: dataSetSize (int*)
+ */
+void setDataSetSize(int* dataSetSize)
+{
+    while (*dataSetSize < 1)
+    {
+        printf("Enter the size of the dataset: :");
+        scanf("%d", dataSetSize);
+    }
 }
 
 int main(void)
 {
-    float dataSet[7];
-    int dataSetSize = 7;
+    /*
+     * Init data
+     */
+    float *dataSetPtr = NULL;
+    int dataSetSize = 0;
+    setDataSetSize(&dataSetSize);
+    setDataSetPtr(&dataSetPtr, dataSetSize);
 
-    input(dataSet, dataSetSize);
-
+    /*
+     * Handle Application
+     */
+    input(dataSetPtr, dataSetSize);
 }
