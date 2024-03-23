@@ -178,11 +178,11 @@ void setDataSetPtr(float **dataSetPtr, int dataSetSize)
  * Prompts and validates the dataset size input from the user.
  * Parameter: dataSetSize (int*)
  */
-void setDataSetSize(int* dataSetSize)
+void setDataSetSize(int *dataSetSize)
 {
     while (*dataSetSize < 1)
     {
-        printf("Enter the size of the dataset: :");
+        printf("Enter the size of the dataset:");
         scanf("%d", dataSetSize);
     }
 }
